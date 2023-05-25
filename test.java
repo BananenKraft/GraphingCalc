@@ -286,6 +286,10 @@ public class test {
                         else point = 8;
                         break;
                     }
+                    default:{
+                        point = -1;
+                        break;
+                    }
                 }
                 break;
             }
