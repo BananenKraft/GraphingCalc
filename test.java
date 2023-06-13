@@ -158,6 +158,7 @@ public class test {
                     }
                     case'(':{
                         point = 6;
+                        bracketOpenCount++;
                         break;
                     }
                     default:{
@@ -286,6 +287,11 @@ public class test {
                         else point = 8;
                         break;
                     }
+                    case ')':{
+                        point = 12;
+                        bracketCloseCount++;
+                        break;
+                    }
                     default:{
                         point = -1;
                         break;
@@ -302,10 +308,22 @@ public class test {
         bracketOpenCount = 0;
 
         for(int i = 0; i < input.length(); i++){
+            System.out.println("Old point:" + point +"\nRead char:" + input.charAt(i));
+            if(point ==-1) return false;
             switchCase(input.charAt(i));
+            if(point == 6) System.out.println("Bo detected! Current count: " + bracketOpenCount);
+            if(point == 12) System.out.println("Bc detected! Current count: " + bracketCloseCount);
+            System.out.println("New point: " + point +"\n");
         }
-        if(point ==-1) return false;
-        if(point==1 || point == 12) return true;
+        if(point == 1 || point == 12) return true;
         return false;
+    }
+
+    public int getBo(){
+        return bracketOpenCount;
+    }
+
+    public int getBc(){
+        return bracketCloseCount;
     }
 }
